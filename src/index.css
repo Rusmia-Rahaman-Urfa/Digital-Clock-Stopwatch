@@ -1,0 +1,470 @@
+:root {
+    --color-bg-dark: #0f172a; /* Slate 900 */
+    --color-bg-medium: #1e293b; /* Slate 800 */
+    --color-primary: #ec4899; /* Pink 500 */
+    --color-secondary: #0ea5e9; /* Sky 500 */
+    --color-text-light: #f1f5f9; /* Slate 100 */
+    --color-text-muted: #94a3b8; /* Slate 400 */
+    --font-mono: 'Roboto Mono', monospace;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: var(--color-text-light);
+    background: var(--color-bg-dark);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top on large screens */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* App Container and Responsiveness */
+.app-container {
+    width: 100%;
+    max-width: 520px; /* Wider for more professional feel */
+    background: var(--color-bg-medium);
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--color-primary);
+    border: 1px solid #334155;
+}
+
+.title-style {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.75rem;
+}
+
+/* --- Tabs and Navigation --- */
+.tab-bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 8px;
+}
+
+.tab-button {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-button:hover {
+    color: var(--color-text-light);
+    background-color: #334155;
+}
+
+.tab-active {
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-primary);
+    background-color: #0f172a;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* --- General Display Boxes --- */
+.display-box {
+    padding: 1.5rem;
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.display-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    padding-bottom: 8px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 10px;
+}
+
+/* --- Digital Clock Specifics --- */
+.digital-clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-display-large {
+    font-family: var(--font-mono);
+    font-size: 4rem; /* Larger for clock focus */
+    font-weight: 700;
+    color: var(--color-secondary);
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.date-box {
+    padding: 0.75rem 1.5rem;
+}
+.date-box .display-text {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+}
+
+.clock-info {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #475569;
+    margin-top: 0.5rem;
+}
+
+.alarm-status-box {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fcd34d; /* Amber */
+}
+
+/* --- Stopwatch Specifics --- */
+.stopwatch-display-wrapper {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.stopwatch-reading {
+    font-family: var(--font-mono);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    line-height: 1.2;
+}
+
+.stopwatch-reading .milliseconds {
+    font-size: 0.5em; /* Smaller milliseconds */
+    color: var(--color-text-muted);
+}
+
+.status-box {
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #1e293b;
+    border-radius: 10px;
+    border: 2px solid #334155;
+}
+
+.button-group-responsive {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 2rem;
+}
+.button-group-responsive > button {
+    flex-grow: 1;
+    min-width: calc(50% - 6px); /* 2 per row on mobile */
+}
+@media (min-width: 400px) {
+    .button-group-responsive {
+        flex-wrap: nowrap; /* 3 per row on wider screens */
+    }
+    .button-group-responsive > button {
+        min-width: 0;
+    }
+}
+
+/* Lap List */
+.laps-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #0f172a;
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 1px solid #334155;
+}
+
+.laps-empty {
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.laps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0.25rem;
+    border-bottom: 1px dashed #334155;
+    font-size: 0.95rem;
+    font-family: var(--font-mono);
+}
+
+.lap-item:last-child {
+    border-bottom: none;
+}
+
+.lap-number {
+    color: #fcd34d;
+    font-weight: 500;
+}
+
+.lap-time {
+    color: var(--color-text-light);
+}
+
+
+/* --- Alarm Specifics --- */
+.alarm-input-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.time-input {
+    font-family: var(--font-mono);
+    text-align: center;
+    /* Custom style for the time input appearance */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: text;
+}
+
+.alarm-list-container {
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background-color: #0f172a;
+}
+
+.alarm-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alarm-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #334155;
+    transition: background-color 0.2s;
+}
+.alarm-item:hover {
+    background-color: #1e293b;
+}
+.alarm-item:last-child {
+    border-bottom: none;
+}
+
+.alarm-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.alarm-time {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+}
+
+.alarm-label {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.alarm-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.toggle-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: 80px;
+}
+
+.delete-button {
+    color: #f87171; /* Red 400 */
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+.delete-button:hover {
+    background-color: #334155;
+}
+
+/* Active/Inactive states */
+.active-alarm .alarm-time {
+    color: #4ade80; /* Green 400 */
+}
+.inactive-alarm .alarm-time {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}
+
+
+/* --- Button Overrides (General) --- */
+.button-base {
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+}
+.button-primary:hover:not(:disabled) {
+    background-color: #f472b6;
+}
+.button-secondary {
+    background-color: #334155;
+    color: var(--color-text-light);
+    border: 1px solid #64748b;
+}
+.button-secondary:hover:not(:disabled) {
+    background-color: #475569;
+}
+.button-base:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* --- Modal Styling (Custom Alert) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--color-bg-medium);
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--color-primary);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.modal-close:hover {
+    color: var(--color-text-light);
+}
+
+.modal-body {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* General Cleanup */
+h1, h3, p, ul, li {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .time-display-large {
+        font-size: 3rem;
+    }
+    .stopwatch-reading {
+        font-size: 3rem;
+    }
+    .alarm-input-grid {
+        grid-template-columns: 1fr; /* Stack inputs on small screens */
+    }
+}
